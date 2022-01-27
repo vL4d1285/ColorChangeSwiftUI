@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct SliderView: View {
+    
     @Binding var value: Double
     @State private var textField = ""
     @State private var showAlert = false
     
     let minTrackTintColor: Color
     let textColor: Color
-        
+    
     var body: some View {
         HStack{
             
@@ -29,6 +30,7 @@ struct SliderView: View {
                 .onChange(of: value) { newValue in
                     textField = String(lround(newValue))
                 }
+            //in real time passing the values of the slider to the text field
             
             // Slider Value TextField
             TextField("", text: $textField) { _ in
@@ -43,6 +45,7 @@ struct SliderView: View {
         .onAppear{
             textField = "\(lround(value))"
         }
+        // onAppear - Adds an action to perform when this view appears.
         .padding(.horizontal)
     }
 }

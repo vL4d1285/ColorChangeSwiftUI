@@ -31,3 +31,5 @@ struct ColorView_Previews: PreviewProvider {
         ColorView(redValue: 0.5, greenValue: 0.5, blueValue: 0.5)
     }
 }
+
+
