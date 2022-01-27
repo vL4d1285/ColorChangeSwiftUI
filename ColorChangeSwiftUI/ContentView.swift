@@ -8,14 +8,12 @@
 import SwiftUI
 
 struct ContentView: View {
-    
-    @State private var rSliderValue = Double.random(in: 0...1)
-    @State private var gSliderValue = Double.random(in: 0...1)
-    @State private var bSliderValue = Double.random(in: 0...1)
-    
-    @State private var redTextField = ""
-    @State private var greenTextField = ""
-    @State private var blueTextField = ""
+   
+    @State private var rSliderValue = Double.random(in: 0...255)
+    @State private var gSliderValue = Double.random(in: 0...255)
+    @State private var bSliderValue = Double.random(in: 0...255)
+       
+    @FocusState private var inputActive: Bool
     
     var body: some View {
         
@@ -26,17 +24,23 @@ struct ContentView: View {
                       blueValue: bSliderValue)
             VStack {
                 SliderView(value: $rSliderValue,
-                           textField: $redTextField,
                            minTrackTintColor: .red,
                            textColor: .red)
                 SliderView(value: $gSliderValue,
-                           textField: $greenTextField,
                            minTrackTintColor: .green,
                            textColor: .green)
                 SliderView(value: $bSliderValue,
-                           textField: $blueTextField,
                            minTrackTintColor: .blue,
                            textColor: .blue)
+            }
+            .focused($inputActive)
+            .toolbar{
+                ToolbarItemGroup(placement: .keyboard) {
+                    Spacer()
+                    Button("Done") {
+                        inputActive = false
+                    }
+                }
             }
             Spacer()
         }
@@ -46,6 +50,8 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ZStack {
+            ContentView()
+        }
     }
 }

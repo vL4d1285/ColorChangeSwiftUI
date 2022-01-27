@@ -9,12 +9,16 @@ import SwiftUI
 
 struct ColorView: View {
     
-    var redValue: Double
-    var greenValue: Double
-    var blueValue: Double
+    let redValue: Double
+    let greenValue: Double
+    let blueValue: Double
     
     var body: some View {
-        Color(red: redValue, green: greenValue, blue: blueValue)
+        Color(
+            red: redValue / 255,
+            green: greenValue / 255,
+            blue: blueValue / 255
+        )
             .clipShape(RoundedRectangle(cornerRadius: 25))
             .overlay(RoundedRectangle(cornerRadius: 25).stroke(Color.gray, lineWidth: 0.4))
             .padding()
